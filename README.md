@@ -1,2 +1,2 @@
-# commonKnowledge
-Sum common knowledge shieet
+artificial =/= real
+sum common knowledge shieet
