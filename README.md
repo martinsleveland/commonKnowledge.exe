@@ -1,2 +1,4 @@
-artificial =/= real \n
+artificial =/= real
+
+
 sum common knowledge shieet
