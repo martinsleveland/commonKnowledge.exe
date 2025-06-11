@@ -71,4 +71,5 @@ Spawn python shell:
 python -c 'import pty; pty.spawn("/bin/sh")' 
 
 
-
+Interactive shell
+/bin/sh -i
